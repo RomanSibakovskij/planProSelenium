@@ -1,0 +1,77 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: root
+          POSTGRES_DB: progetto
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres -d progetto"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+
+    - name: Set up Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker-compose
+
+    - name: Build and start services
+      run: docker-compose up -d
+
+    - name: Wait for server to be ready
+      run: |
+        for i in {1..30}; do
+          if curl --output /dev/null --silent --head --fail http://localhost:5173; then
+            echo "Server is up!"
+            break
+          fi
+          echo "Waiting for server..."
+          sleep 1
+        done
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '21'
+
+    - name: Install Maven dependencies
+      run: mvn install -DskipTests
+
+    - name: Run Selenium tests
+      env:
+        SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
+      run: mvn -X test
+
+    - name: Shut down services
+      run: docker-compose down
