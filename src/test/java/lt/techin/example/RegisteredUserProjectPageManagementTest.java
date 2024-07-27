@@ -2,7 +2,7 @@ package lt.techin.example;
 
 import org.junit.jupiter.api.Test;
 
-public class RegisteredUserProjectPageManagementTest extends BaseTest{
+public class RegisteredUserProjectPageManagementTest extends TestMethods{
 
     //Test 5 -> add new project
 
