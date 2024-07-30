@@ -65,6 +65,35 @@ public class NavigationToRegisterPageTest extends TestMethods{
 
         registerNewAccountNoEmailTest(registerPage);
     }
-    
 
+    // Test 2e -> register attempt with invalid password
+    @Test
+    void registerNewAccountWithInvalidPasswordTest(){
+        clickSignUpLinkTest();
+
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetailsWithInvalidPassword();
+
+        registerNewAccountWithInvalidPasswordTest(registerPage);
+    }
+
+    // Test 2f -> register attempt with no password/confirm password
+    @Test
+    void registerNewAccountWithNoPasswordTest(){
+        clickSignUpLinkTest();
+
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetailsWithNoPassword();
+
+        registerNewAccountWithNoPasswordTest(registerPage);
+    }
+    // Test 2g -> register attempt with mismatching passwords
+    @Test
+    void registerNewAccountWithMismatchingPasswordTest(){
+        clickSignUpLinkTest();
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetailsWithMismatchingPasswords();
+
+        registerNewAccountWithMismatchingPasswordTest(registerPage);
+    }
 }

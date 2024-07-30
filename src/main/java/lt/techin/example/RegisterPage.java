@@ -24,6 +24,12 @@ public class RegisterPage extends BasePage {
     @FindBy(css = "input[name='password']")
     private WebElement passwordInputField;
 
+    @FindBy(css = "#root > div > form > div:nth-child(3) > p")
+    private WebElement invalidPasswordMessage;
+
+    @FindBy(css = "#root > div > form > div:nth-child(4) > p")
+    private WebElement mismatchingPasswordsMessage;
+
     @FindBy(css = "input[name='repeatPassword']")
     private WebElement confirmPasswordInputField;
 
@@ -39,6 +45,8 @@ public class RegisterPage extends BasePage {
     private String invalidEmailAddress;
     private String noEmailAddress = "";
     private String password;
+    private String invalidPassword;
+    private String noPassword = "";
 
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -98,7 +106,40 @@ public class RegisterPage extends BasePage {
         System.out.println("Password: " + password + "\n");
     }
 
+    public void inputNewUserDetailsWithInvalidPassword(){
+        username = TestDataGenerator.generateRandomUsername(8);
+        emailAddress = TestDataGenerator.generateRandomEmailAddress(10);
+        invalidPassword = TestDataGenerator.generateRandomInvalidPassword();
 
+        System.out.println("Generated Data:" + "\n");
+        System.out.println("Username: " + username);
+        System.out.println("Email: " + emailAddress);
+        System.out.println("Invalid password: " + invalidPassword + "\n");
+    }
+
+    public void inputNewUserDetailsWithNoPassword(){
+        username = TestDataGenerator.generateRandomUsername(8);
+        emailAddress = TestDataGenerator.generateRandomEmailAddress(10);
+        noPassword = "";
+
+        System.out.println("Generated Data:" + "\n");
+        System.out.println("Username: " + username);
+        System.out.println("Email: " + emailAddress);
+        System.out.println("No password: " + noPassword + "\n");
+    }
+
+    public void inputNewUserDetailsWithMismatchingPasswords(){
+        username = TestDataGenerator.generateRandomUsername(8);
+        emailAddress = TestDataGenerator.generateRandomEmailAddress(10);
+        password = TestDataGenerator.generateRandomPassword();
+        invalidPassword = TestDataGenerator.generateRandomInvalidPassword();
+
+        System.out.println("Generated Data:" + "\n");
+        System.out.println("Username: " + username);
+        System.out.println("Email: " + emailAddress);
+        System.out.println("Password: " + password);
+        System.out.println("Confirm password: " + invalidPassword + "\n");
+    }
 
     //input methods
     public void inputNewUsername() {
@@ -126,6 +167,7 @@ public class RegisterPage extends BasePage {
         passwordInputField.sendKeys(password);
     }
 
+
     public void inputConfirmPassword() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(usernameInputField));
@@ -145,6 +187,34 @@ public class RegisterPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
         emailAddressInputField.sendKeys(invalidEmailAddress);
     }
+
+    public void inputNewInvalidPassword() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
+        passwordInputField.sendKeys(invalidPassword);
+    }
+
+    public void inputInvalidConfirmPassword(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
+        confirmPasswordInputField.sendKeys(invalidPassword);
+    }
+
+    public void inputNoPassword() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
+        passwordInputField.sendKeys(noPassword);
+    }
+
+    public void inputNoConfirmPassword() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
+        passwordInputField.sendKeys(noPassword);
+    }
+
 
 
 
@@ -180,9 +250,6 @@ public class RegisterPage extends BasePage {
 
     //negative test cases getters
 
-    public String getInvalidUsernameMessage() {
-        return invalidUsernameMessage.getText();
-    }
     public String getNoUsername() {
         return noUsername;
     }
@@ -193,5 +260,21 @@ public class RegisterPage extends BasePage {
 
     public String getNoEmailAddress() {
         return noEmailAddress;
+    }
+
+    public String getNoPassword(){
+        return noPassword;
+    }
+
+    public String getInvalidUsernameMessage() {
+        return invalidUsernameMessage.getText();
+    }
+
+    public String getInvalidPasswordMessage(){
+        return invalidPasswordMessage.getText();
+    }
+
+    public String getMismatchingPasswordMessage(){
+        return mismatchingPasswordsMessage.getText();
     }
 }

@@ -107,6 +107,31 @@ public class TestDataGenerator extends BasePage {
         return password.toString();
     }
 
+    public static String generateRandomInvalidPassword() {
+        String numbers = "0123456789";
+//        String special = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+
+        // fixed password part
+        String stokerPart = "Stoker";
+
+        // random numeric sequence
+        StringBuilder numericPart = new StringBuilder();
+        numericPart.append(numbers.charAt(RANDOM.nextInt(numbers.length())));
+        numericPart.append(numbers.charAt(RANDOM.nextInt(numbers.length())));
+        numericPart.append(numbers.charAt(RANDOM.nextInt(numbers.length())));
+//        numericPart.append('_'); // Static underscore
+
+        // shuffle the numeric part
+        String shuffledNumericPart = shuffleString(numericPart.toString());
+
+        //"Stoker" + shuffled numeric part
+        StringBuilder password = new StringBuilder();
+        password.append(stokerPart);
+        password.append(shuffledNumericPart);
+
+        return password.toString();
+    }
+
     //getters for email / password
 
     public static String getEmailAddress() {

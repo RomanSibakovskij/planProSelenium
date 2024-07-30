@@ -197,6 +197,94 @@ public class TestMethods extends BaseTest{
         registerPage.clickCreateAnAccountButton();
     }
 
+    protected void registerNewAccountWithInvalidPasswordTest(RegisterPage registerPage) {
+        //assert the username input field is displayed
+        assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
+        System.out.println("Username input field is present" + "\n");
+        registerPage.inputNewUsername();
+
+
+        //assert the email address input field is present
+        assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        registerPage.inputNewEmailAddress();
+
+        //assert the password input field is present
+        assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        registerPage.inputNewInvalidPassword();
+        //        assertEquals(registerPage.getInvalidPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"); //due to non-existent IDs
+
+        //assert the confirm password input field is present
+        assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
+        System.out.println("Confirm password input field is present" + "\n");
+        registerPage.inputInvalidConfirmPassword();
+
+        //assert the 'Create an Account' button is present
+        assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
+        System.out.println("Create an account button is present" + "\n");
+        registerPage.clickCreateAnAccountButton();
+    }
+
+    protected void registerNewAccountWithNoPasswordTest(RegisterPage registerPage) {
+        //assert the username input field is displayed
+        assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
+        System.out.println("Username input field is present" + "\n");
+        registerPage.inputNewUsername();
+
+
+        //assert the email address input field is present
+        assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        registerPage.inputNewEmailAddress();
+
+        //assert the password input field is present
+        assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        registerPage.inputNoPassword();
+        //assertEquals(registerPage.getInvalidPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"); //due to non-existent IDs
+
+        //assert the confirm password input field is present
+        assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
+        System.out.println("Confirm password input field is present" + "\n");
+        registerPage.inputNoConfirmPassword();
+
+        //assert the 'Create an Account' button is present
+        assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
+        System.out.println("Create an account button is present" + "\n");
+        registerPage.clickCreateAnAccountButton();
+    }
+
+    protected void registerNewAccountWithMismatchingPasswordTest(RegisterPage registerPage) {
+        //assert the username input field is displayed
+        assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
+        System.out.println("Username input field is present" + "\n");
+        registerPage.inputNewUsername();
+
+
+        //assert the email address input field is present
+        assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        registerPage.inputNewEmailAddress();
+
+        //assert the password input field is present
+        assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        registerPage.inputNewPassword();
+        //assertEquals(registerPage.getInvalidPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"); //due to non-existent IDs
+
+        //assert the confirm password input field is present
+        assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
+        System.out.println("Confirm password input field is present" + "\n");
+        registerPage.inputInvalidConfirmPassword();
+        //assertEquals(registerPage.getMismatchingPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"); //due to non-existent IDs
+
+        //assert the 'Create an Account' button is present
+        assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
+        System.out.println("Create an account button is present" + "\n");
+        registerPage.clickCreateAnAccountButton();
+    }
+
 
     //registrated user login test methods
     protected void loginAsRegisteredUserTest(RegisterPage registerPage) {
