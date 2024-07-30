@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestMethods extends BaseTest{
 
@@ -19,12 +19,69 @@ public class TestMethods extends BaseTest{
         System.out.println("Sign up link is present" + "\n");
         loginPage.clickSignUpLink();
     }
-
+    //positive test cases
     protected static void registerNewAccountSubmissionTest(RegisterPage registerPage) {
         //assert the username input field is displayed
         assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
         System.out.println("Username input field is present" + "\n");
         registerPage.inputNewUsername();
+
+        //assert the email address input field is present
+        assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        registerPage.inputNewEmailAddress();
+
+        //assert the password input field is present
+        assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        registerPage.inputNewPassword();
+
+        //assert the confirm password input field is present
+        assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
+        System.out.println("Confirm password input field is present" + "\n");
+        registerPage.inputConfirmPassword();
+
+        //assert the 'Create an Account' button is present
+        assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
+        System.out.println("Create an account button is present" + "\n");
+        registerPage.clickCreateAnAccountButton();
+    }
+
+    //negative test cases
+    protected static void registerNewAccountTooShortUsernameTest(RegisterPage registerPage) {
+        //assert the username input field is displayed
+        assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
+        System.out.println("Username input field is present" + "\n");
+        registerPage.inputTooShortUsername();
+//        assertEquals(registerPage.getInvalidUsernameMessage(), "Username is required and must be between 6 and 32 characters"); //due to non-existent IDs
+
+        //assert the email address input field is present
+        assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        registerPage.inputNewEmailAddress();
+
+        //assert the password input field is present
+        assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        registerPage.inputNewPassword();
+
+        //assert the confirm password input field is present
+        assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
+        System.out.println("Confirm password input field is present" + "\n");
+        registerPage.inputConfirmPassword();
+
+        //assert the 'Create an Account' button is present
+        assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
+        System.out.println("Create an account button is present" + "\n");
+        registerPage.clickCreateAnAccountButton();
+    }
+
+    protected static void registerNewAccountNoUsernameTest(RegisterPage registerPage) {
+        //assert the username input field is displayed
+        assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
+        System.out.println("Username input field is present" + "\n");
+        registerPage.inputNewUserDetailsWithNoUsername();
+//        assertEquals(registerPage.getInvalidUsernameMessage(), "Username is required and must be between 6 and 32 characters"); //due to non-existent IDs
 
         //assert the email address input field is present
         assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");

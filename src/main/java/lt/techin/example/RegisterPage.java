@@ -15,6 +15,9 @@ public class RegisterPage extends BasePage {
     @FindBy(css = "input[name='name']")
     private WebElement usernameInputField;
 
+    @FindBy(css = "#root > div > form > div:nth-child(1) > p")
+    private WebElement invalidUsernameMessage;
+
     @FindBy(css = "input[name='email']")
     private WebElement emailAddressInputField;
 
@@ -30,6 +33,8 @@ public class RegisterPage extends BasePage {
 
     //input data
     private String username;
+    private String shortUsername;
+    private String noUsername = "";
     private String emailAddress;
     private String password;
 
@@ -38,11 +43,38 @@ public class RegisterPage extends BasePage {
     }
     public void inputNewUserDetails(){
         username = TestDataGenerator.generateRandomUsername(8);
+        shortUsername = TestDataGenerator.generateRandomUsername(1);
         emailAddress = TestDataGenerator.generateRandomEmailAddress(10);
         password = TestDataGenerator.generateRandomPassword();
 
         System.out.println("Generated Data:" + "\n");
         System.out.println("Username: " + username);
+        System.out.println("Email: " + emailAddress);
+        System.out.println("Password: " + password + "\n");
+
+
+    }
+
+    public void inputNewUserDetailsWithTooShortUsername(){
+        shortUsername = TestDataGenerator.generateRandomUsername(1);
+        emailAddress = TestDataGenerator.generateRandomEmailAddress(10);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Generated Data:" + "\n");
+        System.out.println("Too short username: " + shortUsername);
+        System.out.println("Email: " + emailAddress);
+        System.out.println("Password: " + password + "\n");
+
+
+    }
+
+    public void inputNewUserDetailsWithNoUsername(){
+        noUsername = "";
+        emailAddress = TestDataGenerator.generateRandomEmailAddress(10);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Generated Data:" + "\n");
+        System.out.println("No username: " + noUsername);
         System.out.println("Email: " + emailAddress);
         System.out.println("Password: " + password + "\n");
 
@@ -55,6 +87,14 @@ public class RegisterPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(usernameInputField));
         usernameInputField.sendKeys(username);
     }
+
+    public void inputTooShortUsername(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        usernameInputField.sendKeys(shortUsername);
+    }
+
+
 
     public void inputNewEmailAddress() {
 
@@ -113,5 +153,14 @@ public class RegisterPage extends BasePage {
 
     public String getPassword() {
         return password;
+    }
+
+    //negative test cases getters
+
+    public String getInvalidUsernameMessage() {
+        return invalidUsernameMessage.getText();
+    }
+    public String getNoUsername() {
+        return noUsername;
     }
 }

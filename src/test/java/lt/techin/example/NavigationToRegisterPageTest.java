@@ -22,4 +22,26 @@ public class NavigationToRegisterPageTest extends TestMethods{
 
     }
 
+    //Test 2a -> register attempt with too short username
+    @Test
+    void registerNewAccountTooShortUsernameTest(){
+        clickSignUpLinkTest();
+
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetailsWithTooShortUsername();
+
+        registerNewAccountTooShortUsernameTest(registerPage);
+
+    }
+    // Test 2b -> register attempt with no username
+    @Test
+    void registerNewAccountNoUsernameTest(){
+        clickSignUpLinkTest();
+
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetailsWithNoUsername();
+
+        registerNewAccountNoUsernameTest(registerPage);
+    }
+
 }
