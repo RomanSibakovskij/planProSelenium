@@ -11,6 +11,13 @@ public class RegisteredUserProjectPageTest extends TestMethods{
         loginAsARegisteredUserTest();
     }
 
+    //Test 3a -> login attempt with invalid email address
+    @Test
+    void loginAsRegisteredUserWithInvalidEmailTest(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserInvalidEmailTest();
+    }
+
     //Test 4 -> registered user navigation to projects page
     @Test
     void registeredUserNavigationToProjectsTests(){

@@ -17,6 +17,9 @@ public class LoginPage extends BasePage{
     @FindBy(css = "input[name='password']")
     private WebElement passwordInputField;
 
+    @FindBy(css = "#root > div > div.sc-gFqAYk.ixfqVX > div > form > p")
+    private WebElement invalidInputMessage;
+
     @FindBy(xpath = "//*//div[@id='root']//form/button[@type='submit']")
     private WebElement signinButton;
 
@@ -40,6 +43,19 @@ public class LoginPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.elementToBeClickable(passwordInputField));
         passwordInputField.sendKeys(password);
+    }
+
+    //invalid inputs
+    public void inputInvalidEmailAddress(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.elementToBeClickable(emailAddressInputField));
+        emailAddressInputField.sendKeys("m3@example.com");
+    }
+
+    public void inputInvalidPassword(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.elementToBeClickable(emailAddressInputField));
+        emailAddressInputField.sendKeys("Staker112_");
     }
 
     //button, link
@@ -71,6 +87,12 @@ public class LoginPage extends BasePage{
 
     public boolean isSigninButtonPresent() {
         return signinButton.isDisplayed();
+    }
+
+    //getter
+
+    public String getInvalidInputMessage() {
+        return invalidInputMessage.getText();
     }
 
 }

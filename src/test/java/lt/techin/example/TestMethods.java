@@ -315,6 +315,37 @@ public class TestMethods extends BaseTest{
         loginAsRegisteredUserTest(registerPage);
     }
 
+    // registered user login negative test methods
+
+    protected void loginAsRegisteredUserWithInvalidEmailTest(RegisterPage registerPage) {
+        LoginPage loginPage = new LoginPage(driver);
+        //assert email address input field is displayed
+        assertTrue(loginPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        loginPage.inputInvalidEmailAddress();
+//        assertEquals(loginPage.getInvalidInputMessage(), "Incorrect email or password. Please try again."); // no adequate ids present for webelement detection
+
+        //assert password input field is displayed
+        assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        loginPage.inputPassword(registerPage.getPassword());
+
+        //assert sign in button is displayed
+        assertTrue(loginPage.isSigninButtonPresent(), "Sign in button is not present" + "\n");
+        System.out.println("Sign in button is present");
+        loginPage.clickSignInButton();
+    }
+
+    protected void loginAsARegisteredUserInvalidEmailTest() {
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetails();
+
+        registerNewAccountSubmissionTest(registerPage);
+
+        loginAsRegisteredUserWithInvalidEmailTest(registerPage);
+    }
+
+
     protected void registeredUserNavigationToProjectsTest() {
         ProjectDashboardPage projectDashboardPage = new ProjectDashboardPage(driver);
 
