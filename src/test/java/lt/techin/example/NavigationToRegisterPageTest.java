@@ -44,4 +44,27 @@ public class NavigationToRegisterPageTest extends TestMethods{
         registerNewAccountNoUsernameTest(registerPage);
     }
 
+    //Test 2c -> register attempt with invalid email address
+    @Test
+    void registerNewAccountInvalidEmailTest(){
+        clickSignUpLinkTest();
+
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetailsWithInvalidEmailAddress();
+
+        registerNewAccountInvalidEmailTest(registerPage);
+    }
+
+    // Test 2d -> register attempt with no email address
+    @Test
+    void registerNoEmailTest(){
+        clickSignUpLinkTest();
+
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetailsWithNoEmailAddress();
+
+        registerNewAccountNoEmailTest(registerPage);
+    }
+    
+
 }

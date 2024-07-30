@@ -36,6 +36,8 @@ public class RegisterPage extends BasePage {
     private String shortUsername;
     private String noUsername = "";
     private String emailAddress;
+    private String invalidEmailAddress;
+    private String noEmailAddress = "";
     private String password;
 
     public RegisterPage(WebDriver driver) {
@@ -43,7 +45,6 @@ public class RegisterPage extends BasePage {
     }
     public void inputNewUserDetails(){
         username = TestDataGenerator.generateRandomUsername(8);
-        shortUsername = TestDataGenerator.generateRandomUsername(1);
         emailAddress = TestDataGenerator.generateRandomEmailAddress(10);
         password = TestDataGenerator.generateRandomPassword();
 
@@ -51,8 +52,6 @@ public class RegisterPage extends BasePage {
         System.out.println("Username: " + username);
         System.out.println("Email: " + emailAddress);
         System.out.println("Password: " + password + "\n");
-
-
     }
 
     public void inputNewUserDetailsWithTooShortUsername(){
@@ -64,8 +63,6 @@ public class RegisterPage extends BasePage {
         System.out.println("Too short username: " + shortUsername);
         System.out.println("Email: " + emailAddress);
         System.out.println("Password: " + password + "\n");
-
-
     }
 
     public void inputNewUserDetailsWithNoUsername(){
@@ -77,9 +74,31 @@ public class RegisterPage extends BasePage {
         System.out.println("No username: " + noUsername);
         System.out.println("Email: " + emailAddress);
         System.out.println("Password: " + password + "\n");
-
-
     }
+
+    public void inputNewUserDetailsWithInvalidEmailAddress(){
+        username = TestDataGenerator.generateRandomUsername(8);
+        invalidEmailAddress = TestDataGenerator.generateRandomInvalidEmailAddress(10);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Generated Data:" + "\n");
+        System.out.println("Username: " + username);
+        System.out.println("Invalid email: " + invalidEmailAddress);
+        System.out.println("Password: " + password + "\n");
+    }
+
+    public void inputNewUserDetailsWithNoEmailAddress(){
+        username = TestDataGenerator.generateRandomUsername(8);
+        noEmailAddress = "";
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Generated Data:" + "\n");
+        System.out.println("Username: " + username);
+        System.out.println("No email: " + noEmailAddress);
+        System.out.println("Password: " + password + "\n");
+    }
+
+
 
     //input methods
     public void inputNewUsername() {
@@ -94,10 +113,7 @@ public class RegisterPage extends BasePage {
         usernameInputField.sendKeys(shortUsername);
     }
 
-
-
     public void inputNewEmailAddress() {
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
         emailAddressInputField.sendKeys(emailAddress);
@@ -120,6 +136,14 @@ public class RegisterPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(createAnAccountButton));
         createAnAccountButton.click();
+    }
+
+    //invalid inputs (email, password)
+
+    public void inputInvalidEmailAddress() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        emailAddressInputField.sendKeys(invalidEmailAddress);
     }
 
 
@@ -150,7 +174,6 @@ public class RegisterPage extends BasePage {
     public String getEmailAddress() {
         return emailAddress;
     }
-
     public String getPassword() {
         return password;
     }
@@ -162,5 +185,13 @@ public class RegisterPage extends BasePage {
     }
     public String getNoUsername() {
         return noUsername;
+    }
+
+    public String getInvalidEmailAddress(){
+        return invalidEmailAddress;
+    }
+
+    public String getNoEmailAddress() {
+        return noEmailAddress;
     }
 }

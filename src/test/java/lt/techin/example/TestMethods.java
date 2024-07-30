@@ -1,10 +1,12 @@
 package lt.techin.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,6 +21,9 @@ public class TestMethods extends BaseTest{
         System.out.println("Sign up link is present" + "\n");
         loginPage.clickSignUpLink();
     }
+
+    // user registration test methods
+
     //positive test cases
     protected static void registerNewAccountSubmissionTest(RegisterPage registerPage) {
         //assert the username input field is displayed
@@ -104,6 +109,96 @@ public class TestMethods extends BaseTest{
         registerPage.clickCreateAnAccountButton();
     }
 
+    protected void registerNewAccountInvalidEmailTest(RegisterPage registerPage) {
+        //assert the username input field is displayed
+        assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
+        System.out.println("Username input field is present" + "\n");
+        registerPage.inputNewUsername();
+
+
+        //assert the email address input field is present
+        assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        registerPage.inputInvalidEmailAddress();
+        //assert the invalid email message appears -> remodel it due to the absense of adequate if any webelement ids
+//        try {
+//            List<WebElement> errorMessages = driver.findElements(By.id("invalid-email-message"));
+//            boolean isInvalidEmailMessageDisplayed = !errorMessages.isEmpty();
+//
+//            if (isInvalidEmailMessageDisplayed) {
+//                System.out.println("Invalid email message is displayed");
+//            } else {
+//                System.out.println("Invalid email message is not displayed");
+//            }
+//
+//            // Using assertFalse instead of assertTrue to avoid test failure
+//            assertFalse(!isInvalidEmailMessageDisplayed, "Test continues even if the invalid email message is not displayed.");
+//        } catch (Exception e) {
+//            System.out.println("Error: Could not verify the invalid email message. " + e.getMessage());
+//        }
+
+        //assert the password input field is present
+        assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        registerPage.inputNewPassword();
+
+        //assert the confirm password input field is present
+        assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
+        System.out.println("Confirm password input field is present" + "\n");
+        registerPage.inputConfirmPassword();
+
+        //assert the 'Create an Account' button is present
+        assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
+        System.out.println("Create an account button is present" + "\n");
+        registerPage.clickCreateAnAccountButton();
+    }
+
+    protected void registerNewAccountNoEmailTest(RegisterPage registerPage) {
+        //assert the username input field is displayed
+        assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
+        System.out.println("Username input field is present" + "\n");
+        registerPage.inputNewUsername();
+
+
+        //assert the email address input field is present
+        assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        registerPage.inputNewUserDetailsWithNoEmailAddress();
+        //assert the invalid email message appears -> remodel it due to the absense of adequate if any webelement ids
+//        try {
+//            List<WebElement> errorMessages = driver.findElements(By.id("invalid-email-message"));
+//            boolean isInvalidEmailMessageDisplayed = !errorMessages.isEmpty();
+//
+//            if (isInvalidEmailMessageDisplayed) {
+//                System.out.println("Invalid email message is displayed");
+//            } else {
+//                System.out.println("Invalid email message is not displayed");
+//            }
+//
+//            // Using assertFalse instead of assertTrue to avoid test failure
+//            assertFalse(!isInvalidEmailMessageDisplayed, "Test continues even if the invalid email message is not displayed.");
+//        } catch (Exception e) {
+//            System.out.println("Error: Could not verify the invalid email message. " + e.getMessage());
+//        }
+
+        //assert the password input field is present
+        assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        registerPage.inputNewPassword();
+
+        //assert the confirm password input field is present
+        assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
+        System.out.println("Confirm password input field is present" + "\n");
+        registerPage.inputConfirmPassword();
+
+        //assert the 'Create an Account' button is present
+        assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
+        System.out.println("Create an account button is present" + "\n");
+        registerPage.clickCreateAnAccountButton();
+    }
+
+
+    //registrated user login test methods
     protected void loginAsRegisteredUserTest(RegisterPage registerPage) {
         LoginPage loginPage = new LoginPage(driver);
         //assert email address input field is displayed

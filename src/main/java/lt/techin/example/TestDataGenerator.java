@@ -22,6 +22,7 @@ public class TestDataGenerator extends BasePage {
     }
 
     private static String emailAddress;
+    private static String invalidEmailAddress;
     private static String password;
 
     // Generate random string methods
@@ -76,6 +77,11 @@ public class TestDataGenerator extends BasePage {
         return emailAddress + "@example.com";
     }
 
+    public static String generateRandomInvalidEmailAddress(int length) {
+        String invalidEmailAddress = generateRandomString(UPPER + LOWER, length);
+        return invalidEmailAddress + "@com";
+    }
+
     public static String generateRandomPassword() {
         String numbers = "0123456789";
 //        String special = "!@#$%^&*()_+-=[]{}|;:,.<>?";
@@ -108,5 +114,11 @@ public class TestDataGenerator extends BasePage {
     }
     public static String getPassword() {
         return password;
+    }
+
+    //getters for invalid emails / passwords
+
+    public static String getInvalidEmailAddress() {
+        return invalidEmailAddress;
     }
 }
