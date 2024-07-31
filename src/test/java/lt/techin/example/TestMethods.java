@@ -345,6 +345,92 @@ public class TestMethods extends BaseTest{
         loginAsRegisteredUserWithInvalidEmailTest(registerPage);
     }
 
+    protected void loginAsRegisteredUserWithInvalidPasswordTest(RegisterPage registerPage) {
+        LoginPage loginPage = new LoginPage(driver);
+        //assert email address input field is displayed
+        assertTrue(loginPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        loginPage.inputEmailAddress(registerPage.getEmailAddress());
+
+        //assert password input field is displayed
+        assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        loginPage.inputInvalidPassword();
+//      assertEquals(loginPage.getInvalidInputMessage(), "Incorrect email or password. Please try again."); // no adequate ids present for webelement detection
+
+        //assert sign in button is displayed
+        assertTrue(loginPage.isSigninButtonPresent(), "Sign in button is not present" + "\n");
+        System.out.println("Sign in button is present");
+        loginPage.clickSignInButton();
+    }
+
+    protected void loginAsARegisteredUserInvalidPasswordTest() {
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetails();
+
+        registerNewAccountSubmissionTest(registerPage);
+
+        loginAsRegisteredUserWithInvalidPasswordTest(registerPage);
+    }
+
+    protected void loginAsRegisteredUserNoEmailTest(RegisterPage registerPage) {
+        LoginPage loginPage = new LoginPage(driver);
+        //assert email address input field is displayed
+        assertTrue(loginPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        loginPage.inputNoEmailAddress();
+  //    assertEquals(loginPage.getPasswordRequiredMessage(), "Email is required"); // no adequate ids present for webelement detection
+
+        //assert password input field is displayed
+        assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        loginPage.inputPassword(registerPage.getPassword());
+
+        //assert sign in button is displayed
+        assertTrue(loginPage.isSigninButtonPresent(), "Sign in button is not present" + "\n");
+        System.out.println("Sign in button is present");
+        loginPage.clickSignInButton();
+    }
+
+    protected void loginAsARegisteredUserNoEmailTest() {
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetails();
+
+        registerNewAccountSubmissionTest(registerPage);
+
+        loginAsRegisteredUserNoEmailTest(registerPage);
+    }
+
+    protected void loginAsRegisteredUserNoPasswordTest(RegisterPage registerPage) {
+        LoginPage loginPage = new LoginPage(driver);
+        //assert email address input field is displayed
+        assertTrue(loginPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
+        System.out.println("Email address input field is present" + "\n");
+        loginPage.inputEmailAddress(registerPage.getEmailAddress());
+
+        //assert password input field is displayed
+        assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        loginPage.inputNoPassword();
+//      assertEquals(loginPage.getPasswordRequiredMessage(), "Password is required"); // no adequate ids present for webelement detection
+
+        //assert sign in button is displayed
+        assertTrue(loginPage.isSigninButtonPresent(), "Sign in button is not present" + "\n");
+        System.out.println("Sign in button is present");
+        loginPage.clickSignInButton();
+    }
+
+    protected void loginAsARegisteredUserNoPasswordTest() {
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.inputNewUserDetails();
+
+        registerNewAccountSubmissionTest(registerPage);
+
+        loginAsRegisteredUserNoPasswordTest(registerPage);
+    }
+
+
+
 
     protected void registeredUserNavigationToProjectsTest() {
         ProjectDashboardPage projectDashboardPage = new ProjectDashboardPage(driver);

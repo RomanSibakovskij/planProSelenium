@@ -20,10 +20,17 @@ public class LoginPage extends BasePage{
     @FindBy(css = "#root > div > div.sc-gFqAYk.ixfqVX > div > form > p")
     private WebElement invalidInputMessage;
 
+    @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/form/div[1]/p")
+    private WebElement noEmailMessage;
+
+    @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/form/div[2]/p")
+    private WebElement noPasswordMessage;
+
+    //link, button
+
     @FindBy(xpath = "//*//div[@id='root']//form/button[@type='submit']")
     private WebElement signinButton;
 
-    //buttons
     @FindBy(xpath = "//*//div[@id='root']//form//a[@href='/registration']")
     private WebElement signUpLink;
 
@@ -52,10 +59,22 @@ public class LoginPage extends BasePage{
         emailAddressInputField.sendKeys("m3@example.com");
     }
 
-    public void inputInvalidPassword(){
+    public void inputNoEmailAddress(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressInputField));
-        emailAddressInputField.sendKeys("Staker112_");
+        emailAddressInputField.sendKeys("");
+    }
+
+    public void inputInvalidPassword(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.elementToBeClickable(passwordInputField));
+        passwordInputField.sendKeys("Staker112_");
+    }
+
+    public void inputNoPassword(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.elementToBeClickable(passwordInputField));
+        passwordInputField.sendKeys("");
     }
 
     //button, link
@@ -95,4 +114,11 @@ public class LoginPage extends BasePage{
         return invalidInputMessage.getText();
     }
 
+    public String getEmailRequiredMessage(){
+        return noEmailMessage.getText();
+    }
+
+    public String getPasswordRequiredMessage(){
+        return noPasswordMessage.getText();
+    }
 }
