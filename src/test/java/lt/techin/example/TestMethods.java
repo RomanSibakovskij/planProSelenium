@@ -813,7 +813,7 @@ public class TestMethods extends BaseTest{
         addNewTaskToProjectPage.inputTaskTooShortNameDetails();
 
         //assert too short name message is displayed
-        assertEquals(addNewTaskToProjectPage.getTooShortNameMessage(), "Name must be at least 2 characters long.")
+        assertEquals(addNewTaskToProjectPage.getTooShortNameMessage(), "Name must be at least 2 characters long.");
 
         //assert priority dropdown menu is present
         assertTrue(addNewTaskToProjectPage.isTaskPriorityDropdownMenuPresent(), "The task priority dropdown menu isn't present" + "\n");
@@ -909,6 +909,102 @@ public class TestMethods extends BaseTest{
         System.out.println("The task description input field is present" + "\n");
 
         addNewTaskToProjectPage.inputTaskNoDescriptionDetails();
+
+        //assert priority dropdown menu is present
+        assertTrue(addNewTaskToProjectPage.isTaskPriorityDropdownMenuPresent(), "The task priority dropdown menu isn't present" + "\n");
+        System.out.println("The task priority dropdown menu is present" + "\n");
+        addNewTaskToProjectPage.selectPriorityHighStatus();
+
+        //assert 'Submit' button is present
+        assertTrue(addNewTaskToProjectPage.isSubmitTaskButtonPresent(), "The submit button isn't present" + "\n");
+        System.out.println("The submit button is present" + "\n");
+        addNewTaskToProjectPage.clickSubmitTaskButton();
+
+        //assert task status and priority icons are displayed after task submission
+        assertTaskStatusIconsAreDisplayed(addNewTaskToProjectPage);
+        assertTaskPriorityIconsAreDisplayed(addNewTaskToProjectPage);
+    }
+
+    protected void addNewTaskToProjectWithTooShortDescriptionTest() {
+        AddNewTaskToProjectPage addNewTaskToProjectPage = new AddNewTaskToProjectPage(driver);
+        //assert planpro button is displayed
+        assertTrue(addNewTaskToProjectPage.isPlanProButtonPresent(), "The planpro button isn't present" + "\n");
+        System.out.println("The planpro button is present" + "\n");
+        addNewTaskToProjectPage.clickPlanProButton();
+        //assert project link is displayed
+        assertTrue(addNewTaskToProjectPage.isProjectLinkPresent(), "The project link isn't present" + "\n");
+        System.out.println("The project link is present" + "\n");
+        addNewTaskToProjectPage.clickProjectLink();
+
+        //assert task status and priority icons are displayed before task submission
+        assertTaskStatusIconsAreDisplayed(addNewTaskToProjectPage);
+        assertTaskPriorityIconsAreDisplayed(addNewTaskToProjectPage);
+
+        //assert add task button is displayed
+        assertTrue(addNewTaskToProjectPage.isAddTaskButtonPresent(), "The add task button isn't present" + "\n");
+        System.out.println("The add task button is present" + "\n");
+        addNewTaskToProjectPage.clickAddTaskButton();
+
+        //task details
+        addNewTaskToProjectPage.generateTaskDetails();
+
+        //assert task name and task description input fields are displayed
+        assertTrue(addNewTaskToProjectPage.isTaskNameInputFieldPresent(), "The task name input field isn't present" + "\n");
+        System.out.println("The task name input field is present" + "\n");
+        assertTrue(addNewTaskToProjectPage.isTaskDescriptionInputFieldPresent(), "The task description input field isn't present" + "\n");
+        System.out.println("The task description input field is present" + "\n");
+
+        addNewTaskToProjectPage.inputTaskTooShortDescriptionDetails();
+        //assert if the error message is displayed -> there's nothing to assert
+        //assertTrue(addNewTaskToProjectPage.getTooShortDescriptionMessage(), "The too short description error message isn't displayed");
+
+        //assert priority dropdown menu is present
+        assertTrue(addNewTaskToProjectPage.isTaskPriorityDropdownMenuPresent(), "The task priority dropdown menu isn't present" + "\n");
+        System.out.println("The task priority dropdown menu is present" + "\n");
+        addNewTaskToProjectPage.selectPriorityHighStatus();
+
+        //assert 'Submit' button is present
+        assertTrue(addNewTaskToProjectPage.isSubmitTaskButtonPresent(), "The submit button isn't present" + "\n");
+        System.out.println("The submit button is present" + "\n");
+        addNewTaskToProjectPage.clickSubmitTaskButton();
+
+        //assert task status and priority icons are displayed after task submission
+        assertTaskStatusIconsAreDisplayed(addNewTaskToProjectPage);
+        assertTaskPriorityIconsAreDisplayed(addNewTaskToProjectPage);
+    }
+
+    protected void addNewTaskToProjectWithTooLongDescriptionTest() {
+        AddNewTaskToProjectPage addNewTaskToProjectPage = new AddNewTaskToProjectPage(driver);
+        //assert planpro button is displayed
+        assertTrue(addNewTaskToProjectPage.isPlanProButtonPresent(), "The planpro button isn't present" + "\n");
+        System.out.println("The planpro button is present" + "\n");
+        addNewTaskToProjectPage.clickPlanProButton();
+        //assert project link is displayed
+        assertTrue(addNewTaskToProjectPage.isProjectLinkPresent(), "The project link isn't present" + "\n");
+        System.out.println("The project link is present" + "\n");
+        addNewTaskToProjectPage.clickProjectLink();
+
+        //assert task status and priority icons are displayed before task submission
+        assertTaskStatusIconsAreDisplayed(addNewTaskToProjectPage);
+        assertTaskPriorityIconsAreDisplayed(addNewTaskToProjectPage);
+
+        //assert add task button is displayed
+        assertTrue(addNewTaskToProjectPage.isAddTaskButtonPresent(), "The add task button isn't present" + "\n");
+        System.out.println("The add task button is present" + "\n");
+        addNewTaskToProjectPage.clickAddTaskButton();
+
+        //task details
+        addNewTaskToProjectPage.generateTaskDetails();
+
+        //assert task name and task description input fields are displayed
+        assertTrue(addNewTaskToProjectPage.isTaskNameInputFieldPresent(), "The task name input field isn't present" + "\n");
+        System.out.println("The task name input field is present" + "\n");
+        assertTrue(addNewTaskToProjectPage.isTaskDescriptionInputFieldPresent(), "The task description input field isn't present" + "\n");
+        System.out.println("The task description input field is present" + "\n");
+
+        addNewTaskToProjectPage.inputTaskTooLongDescriptionDetails();
+        //assert if the error message is displayed -> there's nothing to assert
+        //assertTrue(addNewTaskToProjectPage.getTooLongDescriptionMessage(), "The too long description error message isn't displayed");
 
         //assert priority dropdown menu is present
         assertTrue(addNewTaskToProjectPage.isTaskPriorityDropdownMenuPresent(), "The task priority dropdown menu isn't present" + "\n");
