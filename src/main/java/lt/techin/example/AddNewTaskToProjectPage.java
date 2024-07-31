@@ -111,6 +111,29 @@ public class AddNewTaskToProjectPage extends BasePage {
         }
     }
 
+    //negative input methods
+    public void inputTaskNoNameDetails() {
+        inputTaskNoName();
+        inputTaskDescription();
+    }
+
+    public void inputTaskNoName() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(taskNameInputField));
+        taskNameInputField.sendKeys("");
+    }
+
+    public void inputTaskNoDescriptionDetails() {
+        inputTaskName();
+        inputTaskNoDescription();
+    }
+
+    public void inputTaskNoDescription() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(taskNameInputField));
+        taskNameInputField.sendKeys("");
+    }
+
     public void selectPriorityHighStatus(){
         taskPriorityDropdownMenu.click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
