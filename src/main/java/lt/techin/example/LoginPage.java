@@ -31,8 +31,14 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//*//div[@id='root']//form/button[@type='submit']")
     private WebElement signinButton;
 
+    @FindBy(xpath = "//*//div[@id='root']/nav/div/div[2]/div/a[@href='/']")
+    private WebElement accountButton;
+
     @FindBy(xpath = "//*//div[@id='root']//form//a[@href='/registration']")
     private WebElement signUpLink;
+
+    @FindBy(xpath = "//*[@id=\"root\"]/nav/div/div[2]/div/div/div/p")
+    private WebElement logoutLink;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -85,11 +91,25 @@ public class LoginPage extends BasePage{
         signUpLink.click();
     }
 
+    public void clickLogoutLink() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.elementToBeClickable(logoutLink));
+        logoutLink.click();
+    }
+
     public void clickSignInButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.elementToBeClickable(signinButton));
         signinButton.click();
     }
+
+    public void clickAccountButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.elementToBeClickable(accountButton));
+        accountButton.click();
+    }
+
+
 
     //assert methods
     public boolean isSignUpLinkPresent() {
@@ -106,6 +126,14 @@ public class LoginPage extends BasePage{
 
     public boolean isSigninButtonPresent() {
         return signinButton.isDisplayed();
+    }
+
+    public boolean isAccountButtonPresent(){
+        return accountButton.isDisplayed();
+    }
+
+    public boolean isLogoutLinkPresent(){
+        return logoutLink.isDisplayed();
     }
 
     //getter

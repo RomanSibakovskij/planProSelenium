@@ -46,4 +46,12 @@ public class RegisteredUserProjectPageTest extends TestMethods{
         loginAsARegisteredUserTest();
         registeredUserNavigationToProjectsTest();
     }
+
+    //Test 4a -> registered user log out from account
+    @Test
+    void registeredUserLogoutTests(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserTest();
+        registeredUserLogoutTest();
+    }
 }

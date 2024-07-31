@@ -429,7 +429,16 @@ public class TestMethods extends BaseTest{
         loginAsRegisteredUserNoPasswordTest(registerPage);
     }
 
-
+    //registered user log out from account
+    protected void registeredUserLogoutTest(){
+        LoginPage loginPage = new LoginPage(driver);
+        assertTrue(loginPage.isAccountButtonPresent(), "Account button is not present" + "\n");
+        loginPage.clickAccountButton();
+        System.out.println("Account button is present" + "\n");
+        assertTrue(loginPage.isLogoutLinkPresent(), "Logout link is not present" + "\n");
+        loginPage.clickLogoutLink();
+        System.out.println("Logout link is present" + "\n");
+    }
 
 
     protected void registeredUserNavigationToProjectsTest() {
