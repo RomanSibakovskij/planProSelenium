@@ -66,7 +66,7 @@ public class RegisteredUserProjectPageManagementTest extends TestMethods{
         addNewTaskToProjectWithNoDescriptionTest();
     }
 
-    // Test 7 -> edit new project task
+    // Test 7 -> edit new project task test
 
     @Test
     void editNewProjectTaskTest(){
