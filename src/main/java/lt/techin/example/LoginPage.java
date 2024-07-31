@@ -17,13 +17,13 @@ public class LoginPage extends BasePage{
     @FindBy(css = "input[name='password']")
     private WebElement passwordInputField;
 
-    @FindBy(css = "#root > div > div.sc-gFqAYk.ixfqVX > div > form > p")
+    @FindBy(xpath = "//*[contains(text(), 'Incorrect email or password. Please try again.')]")
     private WebElement invalidInputMessage;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/form/div[1]/p")
+    @FindBy(xpath = "//*[contains(text(), 'Email is required')]")
     private WebElement noEmailMessage;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/form/div[2]/p")
+    @FindBy(xpath = "//*[contains(text(), 'Password is required')]")
     private WebElement noPasswordMessage;
 
     //link, button

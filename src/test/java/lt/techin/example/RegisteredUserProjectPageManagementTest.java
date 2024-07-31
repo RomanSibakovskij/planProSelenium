@@ -23,6 +23,14 @@ public class RegisteredUserProjectPageManagementTest extends TestMethods{
         registeredUserNavigationToProjectsTest();
         addNewProjectWithNoNameTest();
     }
+    //Test 5b -> add new project too short name
+    @Test
+    void addNewProjectTooShortNameTests(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserTest();
+        registeredUserNavigationToProjectsTest();
+        addNewProjectWithTooShortNameTest();
+    }
 
     //Test 5b -> add new project with no description
     @Test

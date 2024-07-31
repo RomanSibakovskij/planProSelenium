@@ -15,7 +15,7 @@ public class RegisterPage extends BasePage {
     @FindBy(css = "input[name='name']")
     private WebElement usernameInputField;
 
-    @FindBy(css = "#root > div > form > div:nth-child(1) > p")
+    @FindBy(xpath = "//*[contains(text(), 'Username is required and must be between 6 and 32 characters')]")
     private WebElement invalidUsernameMessage;
 
     @FindBy(css = "input[name='email']")
@@ -24,7 +24,7 @@ public class RegisterPage extends BasePage {
     @FindBy(css = "input[name='password']")
     private WebElement passwordInputField;
 
-    @FindBy(css = "#root > div > form > div:nth-child(3) > p")
+    @FindBy(xpath = "//*[contains(text(), 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character')]")
     private WebElement invalidPasswordMessage;
 
     @FindBy(css = "#root > div > form > div:nth-child(4) > p")

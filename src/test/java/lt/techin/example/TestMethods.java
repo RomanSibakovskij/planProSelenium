@@ -58,7 +58,6 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
         System.out.println("Username input field is present" + "\n");
         registerPage.inputTooShortUsername();
-//        assertEquals(registerPage.getInvalidUsernameMessage(), "Username is required and must be between 6 and 32 characters"); //due to non-existent IDs
 
         //assert the email address input field is present
         assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
@@ -79,6 +78,9 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
         System.out.println("Create an account button is present" + "\n");
         registerPage.clickCreateAnAccountButton();
+
+        //assert invalid username error message appears
+        assertEquals(registerPage.getInvalidUsernameMessage(), "Username is required and must be between 6 and 32 characters");
     }
 
     protected static void registerNewAccountNoUsernameTest(RegisterPage registerPage) {
@@ -86,7 +88,6 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isUsernameInputFieldPresent(), "Username input field is not present" + "\n");
         System.out.println("Username input field is present" + "\n");
         registerPage.inputNewUserDetailsWithNoUsername();
-//        assertEquals(registerPage.getInvalidUsernameMessage(), "Username is required and must be between 6 and 32 characters"); //due to non-existent IDs
 
         //assert the email address input field is present
         assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
@@ -107,6 +108,9 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
         System.out.println("Create an account button is present" + "\n");
         registerPage.clickCreateAnAccountButton();
+
+        //assert invalid username error message appears
+        assertEquals(registerPage.getInvalidUsernameMessage(), "Username is required and must be between 6 and 32 characters");
     }
 
     protected void registerNewAccountInvalidEmailTest(RegisterPage registerPage) {
@@ -120,22 +124,6 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
         System.out.println("Email address input field is present" + "\n");
         registerPage.inputInvalidEmailAddress();
-        //assert the invalid email message appears -> remodel it due to the absense of adequate if any webelement ids
-//        try {
-//            List<WebElement> errorMessages = driver.findElements(By.id("invalid-email-message"));
-//            boolean isInvalidEmailMessageDisplayed = !errorMessages.isEmpty();
-//
-//            if (isInvalidEmailMessageDisplayed) {
-//                System.out.println("Invalid email message is displayed");
-//            } else {
-//                System.out.println("Invalid email message is not displayed");
-//            }
-//
-//            // Using assertFalse instead of assertTrue to avoid test failure
-//            assertFalse(!isInvalidEmailMessageDisplayed, "Test continues even if the invalid email message is not displayed.");
-//        } catch (Exception e) {
-//            System.out.println("Error: Could not verify the invalid email message. " + e.getMessage());
-//        }
 
         //assert the password input field is present
         assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
@@ -151,6 +139,23 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
         System.out.println("Create an account button is present" + "\n");
         registerPage.clickCreateAnAccountButton();
+
+        //assert the invalid email message appears -> remodel it due to the absence of adequate if any webelement ids
+//        try {
+//            List<WebElement> errorMessages = driver.findElements(By.id("invalid-email-message"));
+//            boolean isInvalidEmailMessageDisplayed = !errorMessages.isEmpty();
+//
+//            if (isInvalidEmailMessageDisplayed) {
+//                System.out.println("Invalid email message is displayed");
+//            } else {
+//                System.out.println("Invalid email message is not displayed");
+//            }
+//
+//            // Using assertFalse instead of assertTrue to avoid test failure
+//            assertFalse(!isInvalidEmailMessageDisplayed, "Test continues even if the invalid email message is not displayed.");
+//        } catch (Exception e) {
+//            System.out.println("Error: Could not verify the invalid email message. " + e.getMessage());
+//        }
     }
 
     protected void registerNewAccountNoEmailTest(RegisterPage registerPage) {
@@ -164,6 +169,22 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
         System.out.println("Email address input field is present" + "\n");
         registerPage.inputNewUserDetailsWithNoEmailAddress();
+
+        //assert the password input field is present
+        assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
+        System.out.println("Password input field is present" + "\n");
+        registerPage.inputNewPassword();
+
+        //assert the confirm password input field is present
+        assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
+        System.out.println("Confirm password input field is present" + "\n");
+        registerPage.inputConfirmPassword();
+
+        //assert the 'Create an Account' button is present
+        assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
+        System.out.println("Create an account button is present" + "\n");
+        registerPage.clickCreateAnAccountButton();
+
         //assert the invalid email message appears -> remodel it due to the absense of adequate if any webelement ids
 //        try {
 //            List<WebElement> errorMessages = driver.findElements(By.id("invalid-email-message"));
@@ -180,21 +201,6 @@ public class TestMethods extends BaseTest{
 //        } catch (Exception e) {
 //            System.out.println("Error: Could not verify the invalid email message. " + e.getMessage());
 //        }
-
-        //assert the password input field is present
-        assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
-        System.out.println("Password input field is present" + "\n");
-        registerPage.inputNewPassword();
-
-        //assert the confirm password input field is present
-        assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
-        System.out.println("Confirm password input field is present" + "\n");
-        registerPage.inputConfirmPassword();
-
-        //assert the 'Create an Account' button is present
-        assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
-        System.out.println("Create an account button is present" + "\n");
-        registerPage.clickCreateAnAccountButton();
     }
 
     protected void registerNewAccountWithInvalidPasswordTest(RegisterPage registerPage) {
@@ -213,7 +219,7 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
         System.out.println("Password input field is present" + "\n");
         registerPage.inputNewInvalidPassword();
-        //        assertEquals(registerPage.getInvalidPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"); //due to non-existent IDs
+
 
         //assert the confirm password input field is present
         assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
@@ -224,6 +230,9 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
         System.out.println("Create an account button is present" + "\n");
         registerPage.clickCreateAnAccountButton();
+
+        //assert invalid password message appears
+        assertEquals(registerPage.getInvalidPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character");
     }
 
     protected void registerNewAccountWithNoPasswordTest(RegisterPage registerPage) {
@@ -242,7 +251,7 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
         System.out.println("Password input field is present" + "\n");
         registerPage.inputNoPassword();
-        //assertEquals(registerPage.getInvalidPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"); //due to non-existent IDs
+
 
         //assert the confirm password input field is present
         assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
@@ -253,6 +262,9 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
         System.out.println("Create an account button is present" + "\n");
         registerPage.clickCreateAnAccountButton();
+
+        //assert password error message appears
+        assertEquals(registerPage.getInvalidPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character");
     }
 
     protected void registerNewAccountWithMismatchingPasswordTest(RegisterPage registerPage) {
@@ -271,22 +283,23 @@ public class TestMethods extends BaseTest{
         assertTrue(registerPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
         System.out.println("Password input field is present" + "\n");
         registerPage.inputNewPassword();
-        //assertEquals(registerPage.getInvalidPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"); //due to non-existent IDs
 
         //assert the confirm password input field is present
         assertTrue(registerPage.isConfirmPasswordInputFieldPresent(), "Confirm password input field is not present" + "\n");
         System.out.println("Confirm password input field is present" + "\n");
         registerPage.inputInvalidConfirmPassword();
-        //assertEquals(registerPage.getMismatchingPasswordMessage(), "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"); //due to non-existent IDs
 
         //assert the 'Create an Account' button is present
         assertTrue(registerPage.isCreateAnAccountButtonPresent(), "Create an account button is not present" + "\n");
         System.out.println("Create an account button is present" + "\n");
         registerPage.clickCreateAnAccountButton();
+
+        //asserts the password mismatch error message appears
+        assertEquals(registerPage.getMismatchingPasswordMessage(), "Passwords do not match. Rewrite password.");
     }
 
 
-    //registrated user login test methods
+    //registered user login test methods
     protected void loginAsRegisteredUserTest(RegisterPage registerPage) {
         LoginPage loginPage = new LoginPage(driver);
         //assert email address input field is displayed
@@ -323,7 +336,7 @@ public class TestMethods extends BaseTest{
         assertTrue(loginPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
         System.out.println("Email address input field is present" + "\n");
         loginPage.inputInvalidEmailAddress();
-//        assertEquals(loginPage.getInvalidInputMessage(), "Incorrect email or password. Please try again."); // no adequate ids present for webelement detection
+
 
         //assert password input field is displayed
         assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
@@ -334,6 +347,9 @@ public class TestMethods extends BaseTest{
         assertTrue(loginPage.isSigninButtonPresent(), "Sign in button is not present" + "\n");
         System.out.println("Sign in button is present");
         loginPage.clickSignInButton();
+
+        //assert the input error message appears
+        assertEquals(loginPage.getInvalidInputMessage(), "Incorrect email or password. Please try again.");
     }
 
     protected void loginAsARegisteredUserInvalidEmailTest() {
@@ -356,12 +372,14 @@ public class TestMethods extends BaseTest{
         assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
         System.out.println("Password input field is present" + "\n");
         loginPage.inputInvalidPassword();
-//      assertEquals(loginPage.getInvalidInputMessage(), "Incorrect email or password. Please try again."); // no adequate ids present for webelement detection
 
         //assert sign in button is displayed
         assertTrue(loginPage.isSigninButtonPresent(), "Sign in button is not present" + "\n");
         System.out.println("Sign in button is present");
         loginPage.clickSignInButton();
+
+        //assert the input error message appears
+        assertEquals(loginPage.getInvalidInputMessage(), "Incorrect email or password. Please try again.");
     }
 
     protected void loginAsARegisteredUserInvalidPasswordTest() {
@@ -379,7 +397,6 @@ public class TestMethods extends BaseTest{
         assertTrue(loginPage.isEmailAddressInputFieldPresent(), "Email address input field is not present" + "\n");
         System.out.println("Email address input field is present" + "\n");
         loginPage.inputNoEmailAddress();
-  //    assertEquals(loginPage.getPasswordRequiredMessage(), "Email is required"); // no adequate ids present for webelement detection
 
         //assert password input field is displayed
         assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
@@ -390,6 +407,9 @@ public class TestMethods extends BaseTest{
         assertTrue(loginPage.isSigninButtonPresent(), "Sign in button is not present" + "\n");
         System.out.println("Sign in button is present");
         loginPage.clickSignInButton();
+
+        //assert email error message appears
+        assertEquals(loginPage.getEmailRequiredMessage(), "Email is required");
     }
 
     protected void loginAsARegisteredUserNoEmailTest() {
@@ -412,12 +432,14 @@ public class TestMethods extends BaseTest{
         assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is not present" + "\n");
         System.out.println("Password input field is present" + "\n");
         loginPage.inputNoPassword();
-//      assertEquals(loginPage.getPasswordRequiredMessage(), "Password is required"); // no adequate ids present for webelement detection
 
         //assert sign in button is displayed
         assertTrue(loginPage.isSigninButtonPresent(), "Sign in button is not present" + "\n");
         System.out.println("Sign in button is present");
         loginPage.clickSignInButton();
+
+        //assert password error message appears
+        assertEquals(loginPage.getPasswordRequiredMessage(), "Password is required");
     }
 
     protected void loginAsARegisteredUserNoPasswordTest() {
@@ -486,6 +508,33 @@ public class TestMethods extends BaseTest{
 
         //assert in-progress icons are displayed after new project creation
         assertInProgressIconsAreDisplayed(addNewProjectPage);
+    }
+
+    protected void addNewProjectWithTooShortNameTest() {
+        AddNewProjectPage addNewProjectPage = new AddNewProjectPage(driver);
+
+        //assert in-progress icons are displayed before new project creation
+        assertInProgressIconsAreDisplayed(addNewProjectPage);
+        //assert the 'Add project' button is displayed
+        assertTrue(addNewProjectPage.isAddProjectButtonPresent(), "The 'Add project' button is not present" + "\n");
+        System.out.println("The 'Add project' button is present" + "\n");
+        addNewProjectPage.clickAddProjectButton();
+
+        // project details
+        addNewProjectPage.generateProjectDetails();
+
+        //assert the project name and description input fields are displayed
+        assertTrue(addNewProjectPage.isProjectNameInputPresent(), "The project name input field isn't present" + "\n");
+        System.out.println("The project name input field is present" + "\n");
+        assertTrue(addNewProjectPage.isProjectDescriptionInputPresent(), "The project description input field isn't present" + "\n");
+        System.out.println("The project description input field is present" + "\n");
+
+        addNewProjectPage.inputProjectDetailsWithTooShortName();
+
+        //assert the 'Submit' button is displayed
+        assertTrue(addNewProjectPage.isSubmitButtonPresent(), "The 'Submit' button is not present" + "\n");
+        System.out.println("The 'Submit' button is present" + "\n");
+        addNewProjectPage.clickSubmitButton();
     }
 
     protected void addNewProjectWithNoNameTest() {

@@ -22,6 +22,12 @@ public class AddNewProjectPage extends BasePage {
     @FindBy(css = "img[alt='Project status bubble']")
     private List<WebElement> projectStatusIcons;
 
+    @FindBy(xpath = "//*[contains(text(), 'Name must be at least 2 characters long.')]")
+    private WebElement tooShortNameMessage;
+
+    @FindBy(xpath = "//*[contains(text(), 'Name must be maximum 50 characters long.')]")
+    private WebElement tooLongNameMessage;
+
     //buttons
     @FindBy(xpath = "//*//div[@id='root']//button[.='Add project']")
     private WebElement addProjectButton;
@@ -89,6 +95,18 @@ public class AddNewProjectPage extends BasePage {
     }
 
     //invalid input methods
+
+    public void inputProjectDetailsWithTooShortName() {
+        inputProjectTooShortName();
+        inputProjectDescription();
+    }
+
+    public void inputProjectTooShortName() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(projectNameInputField));
+        projectNameInputField.sendKeys("K");
+
+    }
 
     public void inputProjectDetailsWithNoName() {
         inputProjectNoName();
@@ -185,5 +203,15 @@ public class AddNewProjectPage extends BasePage {
         }
 
 
+    }
+
+    //getters
+
+    public String getTooShortNameMessage(){
+        return tooShortNameMessage.getText();
+    }
+
+    public String getTooLongNameMessage(){
+        return tooLongNameMessage.getText();
     }
 }
