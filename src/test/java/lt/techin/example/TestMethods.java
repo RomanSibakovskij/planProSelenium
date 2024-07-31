@@ -440,7 +440,7 @@ public class TestMethods extends BaseTest{
         System.out.println("Logout link is present" + "\n");
     }
 
-
+    //registered user navigation to project page
     protected void registeredUserNavigationToProjectsTest() {
         ProjectDashboardPage projectDashboardPage = new ProjectDashboardPage(driver);
 
@@ -486,6 +486,60 @@ public class TestMethods extends BaseTest{
 
         //assert in-progress icons are displayed after new project creation
         assertInProgressIconsAreDisplayed(addNewProjectPage);
+    }
+
+    protected void addNewProjectWithNoNameTest() {
+        AddNewProjectPage addNewProjectPage = new AddNewProjectPage(driver);
+
+        //assert in-progress icons are displayed before new project creation
+        assertInProgressIconsAreDisplayed(addNewProjectPage);
+        //assert the 'Add project' button is displayed
+        assertTrue(addNewProjectPage.isAddProjectButtonPresent(), "The 'Add project' button is not present" + "\n");
+        System.out.println("The 'Add project' button is present" + "\n");
+        addNewProjectPage.clickAddProjectButton();
+
+        // project details
+        addNewProjectPage.generateProjectDetails();
+
+        //assert the project name and description input fields are displayed
+        assertTrue(addNewProjectPage.isProjectNameInputPresent(), "The project name input field isn't present" + "\n");
+        System.out.println("The project name input field is present" + "\n");
+        assertTrue(addNewProjectPage.isProjectDescriptionInputPresent(), "The project description input field isn't present" + "\n");
+        System.out.println("The project description input field is present" + "\n");
+
+        addNewProjectPage.inputProjectDetailsWithNoName();
+
+        //assert the 'Submit' button is displayed
+        assertTrue(addNewProjectPage.isSubmitButtonPresent(), "The 'Submit' button is not present" + "\n");
+        System.out.println("The 'Submit' button is present" + "\n");
+        addNewProjectPage.clickSubmitButton();
+    }
+
+    protected void addNewProjectWithNoDescriptionTest() {
+        AddNewProjectPage addNewProjectPage = new AddNewProjectPage(driver);
+
+        //assert in-progress icons are displayed before new project creation
+        assertInProgressIconsAreDisplayed(addNewProjectPage);
+        //assert the 'Add project' button is displayed
+        assertTrue(addNewProjectPage.isAddProjectButtonPresent(), "The 'Add project' button is not present" + "\n");
+        System.out.println("The 'Add project' button is present" + "\n");
+        addNewProjectPage.clickAddProjectButton();
+
+        // project details
+        addNewProjectPage.generateProjectDetails();
+
+        //assert the project name and description input fields are displayed
+        assertTrue(addNewProjectPage.isProjectNameInputPresent(), "The project name input field isn't present" + "\n");
+        System.out.println("The project name input field is present" + "\n");
+        assertTrue(addNewProjectPage.isProjectDescriptionInputPresent(), "The project description input field isn't present" + "\n");
+        System.out.println("The project description input field is present" + "\n");
+
+        addNewProjectPage.inputProjectDetailsWithNoDescription();
+
+        //assert the 'Submit' button is displayed
+        assertTrue(addNewProjectPage.isSubmitButtonPresent(), "The 'Submit' button is not present" + "\n");
+        System.out.println("The 'Submit' button is present" + "\n");
+        addNewProjectPage.clickSubmitButton();
     }
 
     protected void addNewTaskToProjectTest() {

@@ -15,6 +15,24 @@ public class RegisteredUserProjectPageManagementTest extends TestMethods{
         addNewProjectTest();
     }
 
+    //Test 5a -> add new project with no name
+    @Test
+    void addNewProjectNoNameTests(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserTest();
+        registeredUserNavigationToProjectsTest();
+        addNewProjectWithNoNameTest();
+    }
+
+    //Test 5b -> add new project with no description
+    @Test
+    void addNewProjectNoDescriptionTest(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserTest();
+        registeredUserNavigationToProjectsTest();
+        addNewProjectWithNoDescriptionTest();
+    }
+
     // Test 6 -> add new task to the project
 
     @Test

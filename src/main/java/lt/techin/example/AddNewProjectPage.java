@@ -88,6 +88,32 @@ public class AddNewProjectPage extends BasePage {
         }
     }
 
+    //invalid input methods
+
+    public void inputProjectDetailsWithNoName() {
+        inputProjectNoName();
+        inputProjectDescription();
+    }
+
+    public void inputProjectNoName() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(projectNameInputField));
+        projectNameInputField.sendKeys("");
+
+    }
+
+    public void inputProjectDetailsWithNoDescription() {
+        inputProjectName();
+        inputProjectNoDescription();
+    }
+
+    public void inputProjectNoDescription() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(projectDescriptionInputField));
+        projectDescriptionInputField.sendKeys("");
+
+    }
+
     // Click button methods
     public void clickAddProjectButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
