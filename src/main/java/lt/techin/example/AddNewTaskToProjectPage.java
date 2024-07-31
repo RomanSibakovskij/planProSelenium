@@ -24,6 +24,18 @@ public class AddNewTaskToProjectPage extends BasePage {
     @FindBy(xpath = "//*//div[@id='root']/div//button[.='Add task']")
     private WebElement addTaskButton;
 
+    @FindBy(xpath = "//*[contains(text(), 'Name must be at least 2 characters long.')]")
+    private WebElement tooShortNameMessage;
+
+    @FindBy(xpath = "//*[contains(text(), 'Name must be maximum 50 characters long.')]")
+    private WebElement tooLongNameMessage;
+
+    @FindBy(xpath = "//*[contains(text(), 'No email provided')]")
+    private WebElement tooShortDescriptionMessage;
+
+    @FindBy(xpath = "//*[contains(text(), 'No email provided')]")
+    private WebElement tooLongDescriptionMessage;
+
     @FindBy(css = "select#priority")
     private WebElement taskPriorityDropdownMenu;
 
@@ -122,6 +134,30 @@ public class AddNewTaskToProjectPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(taskNameInputField));
         taskNameInputField.sendKeys("");
     }
+
+    public void inputTaskTooShortNameDetails() {
+        inputTaskTooShortName();
+        inputTaskDescription();
+    }
+
+    public void inputTaskTooShortName() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(taskNameInputField));
+        taskNameInputField.sendKeys("L");
+    }
+
+    public void inputTaskTooLongNameDetails() {
+        inputTaskTooLongName();
+        inputTaskDescription();
+    }
+
+    public void inputTaskTooLongName() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(taskNameInputField));
+        taskNameInputField.sendKeys("sfsdfdsfdfsdfsdfsdfsdfsdfdfsdfsffasdsadadsafsdgdff");
+    }
+
+
 
     public void inputTaskNoDescriptionDetails() {
         inputTaskName();
@@ -224,5 +260,15 @@ public class AddNewTaskToProjectPage extends BasePage {
                 System.out.println("In-progress icons found: " + icon.getAttribute("alt"));
             }
         }
+    }
+
+    //getters
+
+    public String getTooShortNameMessage(){
+        return tooShortNameMessage.getText();
+    }
+
+    public String getTooLongNameMessage(){
+        return tooLongNameMessage.getText();
     }
 }

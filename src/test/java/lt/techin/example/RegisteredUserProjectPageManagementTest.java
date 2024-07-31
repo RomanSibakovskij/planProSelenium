@@ -23,7 +23,7 @@ public class RegisteredUserProjectPageManagementTest extends TestMethods{
         registeredUserNavigationToProjectsTest();
         addNewProjectWithNoNameTest();
     }
-    //Test 5b -> add new project too short name
+    //Test 5b -> add new project with too short name
     @Test
     void addNewProjectTooShortNameTests(){
         clickSignUpLinkTest();
@@ -32,13 +32,40 @@ public class RegisteredUserProjectPageManagementTest extends TestMethods{
         addNewProjectWithTooShortNameTest();
     }
 
-    //Test 5b -> add new project with no description
+    //Test 5c -> add new project with too long name
+    @Test
+    void addNewProjectTooLongNameTests(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserTest();
+        registeredUserNavigationToProjectsTest();
+        addNewProjectWithTooLongNameTest();
+    }
+
+    //Test 5d -> add new project with no description
     @Test
     void addNewProjectNoDescriptionTest(){
         clickSignUpLinkTest();
         loginAsARegisteredUserTest();
         registeredUserNavigationToProjectsTest();
         addNewProjectWithNoDescriptionTest();
+    }
+
+    //Test 5e -> add new project with no description
+    @Test
+    void addNewProjectTooShortDescriptionTest(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserTest();
+        registeredUserNavigationToProjectsTest();
+        addNewProjectWithTooShortDescriptionTest();
+    }
+
+    //Test 5f -> add new project with no description
+    @Test
+    void addNewProjectTooLongDescriptionTest(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserTest();
+        registeredUserNavigationToProjectsTest();
+        addNewProjectWithTooLongDescriptionTest();
     }
 
     // Test 6 -> add new task to the project
@@ -61,6 +88,25 @@ public class RegisteredUserProjectPageManagementTest extends TestMethods{
         registeredUserNavigationToProjectsTest();
         addNewProjectTest();
         addNewTaskToProjectWithNoNameTest();
+    }
+
+    // Test 6b ->
+    @Test
+    void addNewTaskWithTooShortNameToProjectTests(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserTest();
+        registeredUserNavigationToProjectsTest();
+        addNewProjectTest();
+        addNewTaskToProjectWithTooShortNameTest();
+    }
+
+    @Test
+    void addNewTaskWithTooLongNameToProjectTests(){
+        clickSignUpLinkTest();
+        loginAsARegisteredUserTest();
+        registeredUserNavigationToProjectsTest();
+        addNewProjectTest();
+        addNewTaskToProjectWithTooLongNameTest();
     }
 
     // Test 6b -> add new task with no description to the project
